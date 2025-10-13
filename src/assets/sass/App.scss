@@ -1,0 +1,14 @@
+// Importamos variables
+@use './partials/utilities/variables' as v;
+
+// Importamos estilos base
+@use './partials/base/reset';
+@use './partials/base/typography';
+
+// Importamos mixins
+@use './partials/utilities/mixins' as m;
+
+// Los componentes serán importados directamente en los archivos .jsx
+
+// Importamos Bootstrap
+@import 'bootstrap/scss/bootstrap';
