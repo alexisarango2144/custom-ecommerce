@@ -14,6 +14,7 @@ const Navbar = ({addedClasses = ''}) => {
         <NavbarBs.Toggle aria-controls="basic-navbar-nav" />
         <NavbarBs.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
+            <Nav.Link as={NavLink} to={'/'}>Inicio</Nav.Link>
             <Nav.Link as={NavLink} to={'/category/mas vendidos'}>Más vendidos</Nav.Link>
             <Nav.Link as={NavLink} to={'/category/medicamentos'}>Medicamentos</Nav.Link>
             <Nav.Link as={NavLink} to={'/category/suministros'}>Suministros</Nav.Link>

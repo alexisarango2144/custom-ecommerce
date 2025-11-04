@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Form, InputGroup } from 'react-bootstrap'
 
 const ItemCount = ({ stock }) => {
     const [count, setCount] = useState(1)
@@ -31,9 +31,11 @@ const ItemCount = ({ stock }) => {
     return (
         <>
             <div>
-                <Button variant='danger' size='sm' onClick={restar} disabled={count === 0}>-</Button>
-                <span className='btn'>{count}</span>
-                <Button variant='success' size='sm' onClick={sumar} disabled={stock === count}>+</Button>
+                <InputGroup className='mb-2'>
+                    <Button variant='danger' size='sm' onClick={restar} disabled={count === 0}>-</Button>
+                    <span className='btn'>{count}</span>
+                    <Button variant='success' size='sm' onClick={sumar} disabled={stock === count}>+</Button>
+                </InputGroup>
             </div>
             <Button variant='primary' onClick={ejecutarCompra}>Comprar</Button>
         </>

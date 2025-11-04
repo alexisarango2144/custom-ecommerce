@@ -6,7 +6,7 @@ const Item = ({ product }) => {
     console.log('item', product.id);
 
     return (
-        <Card className='mx-2 mb-3' style={{ width: '18rem'}}>
+        <Card className='mx-auto mb-3' style={{ width: '18rem'}}>
             <Card.Img className='px-4 mt-3' style={{maxHeight: '250px'}} src={product.image} />
             <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
@@ -14,7 +14,7 @@ const Item = ({ product }) => {
                     {product.description}.
                 </Card.Text>
                 <Card.Text>
-                    {product.price} USD
+                    ${product.price} COP
                 </Card.Text>
                 <Link className="btn btn-dark" to={`/item/${product.id}`}>Ver más</Link>
             </Card.Body>

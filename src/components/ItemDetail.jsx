@@ -19,7 +19,7 @@ const ItemDetail = ({ detalle }) => {
                             {detalle.description}.
                         </Card.Text>
                         <Card.Text>
-                            Precio: {detalle.price} USD
+                            Precio: ${detalle.price} COP
                         </Card.Text>
                         <Card.Text>
                             

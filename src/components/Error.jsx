@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Error = ({code = ''}) => {
   return (
     <div className="text-center">
+        <img src="/looking.jpg" alt="woman looking for something" style={{maxWidth: '400px'}}/>
         <h1>Error {code}</h1>
         <p>Lo sentimos, la página que buscas no existe.</p>
         
