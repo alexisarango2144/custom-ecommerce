@@ -115,7 +115,7 @@ export const getProducts = ()=>{
                 console.log('Operación exitosa')
                 resolve(products)
             }
-        }, 2000)
+        }, 300)
     })
 }
 
@@ -124,6 +124,6 @@ export const getOneProduct = (id)=>{
         setTimeout(()=>{
             let prod = products.find((producto)=> producto.id == id)
             resolve(prod)
-        }, 2000)
+        }, 300)
     })
 }
