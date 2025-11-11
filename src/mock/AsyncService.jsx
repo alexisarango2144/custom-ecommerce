@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const products = [
+export const products = [
     {
     "id": 1,
     "title": "Ozempic 1.34 mg/ml",

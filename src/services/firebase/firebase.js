@@ -1,20 +1,32 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, getDocs, getDoc, collection } from "firebase/firestore";
+import { getFirestore, getDocs, getDoc, collection, where, query, limit, orderBy,startAfter } from "firebase/firestore";
 
+
+// const firebaseConfig = {
+//   apiKey: import.meta.env.VITE_API_KEY || "AIzaSyARcohHW8X_Za0d1jsRtWL39H1anz-sHUY",
+//   authDomain: "gestionhc-2144.firebaseapp.com",
+//   projectId: "gestionhc-2144",
+//   storageBucket: "gestionhc-2144.firebasestorage.app",
+//   messagingSenderId: "466638731317",
+//   appId: "1:466638731317:web:027f389f1471a37cab197c",
+//   measurementId: "G-H36LZ16CEQ"
+// };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyARcohHW8X_Za0d1jsRtWL39H1anz-sHUY",
-  authDomain: "gestionhc-2144.firebaseapp.com",
-  projectId: "gestionhc-2144",
-  storageBucket: "gestionhc-2144.firebasestorage.app",
-  messagingSenderId: "466638731317",
-  appId: "1:466638731317:web:027f389f1471a37cab197c",
-  measurementId: "G-H36LZ16CEQ"
+  apiKey: "AIzaSyCCK7gy19Cs7ZutwPSS8bNSLZiI-p-fNAo",
+  authDomain: "react-coderhouse-e20c1.firebaseapp.com",
+  projectId: "react-coderhouse-e20c1",
+  storageBucket: "react-coderhouse-e20c1.firebasestorage.app",
+  messagingSenderId: "391357564955",
+  appId: "1:391357564955:web:7c93f4bc49256eaa4d50be"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+
+// Exportamos la instancia de Firebase
+export const db = getFirestore(app);
+
 
 // Consultas Avanzadas en Firestore: Uso de query y where
 const productsCollectionRef = collection(db, "products");
@@ -47,7 +59,7 @@ getDocs(limitedQuery).then(snapshot => {
 });
 
 let lastVisible = null;
-const firstPageQuery = query(itemsCollectionRef, orderBy("price"), limit(5));
+const firstPageQuery = query(productsCollectionRef, orderBy("price"), limit(5));
 
 getDocs(firstPageQuery).then(snapshot => {
   lastVisible = snapshot.docs[snapshot.docs.length - 1];
@@ -57,7 +69,7 @@ getDocs(firstPageQuery).then(snapshot => {
 });
 
 const nextPageQuery = query(
-  itemsCollectionRef,
+  productsCollectionRef,
   orderBy("price"),
   startAfter(lastVisible),
   limit(5)
