@@ -3,15 +3,13 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Item = ({ product }) => {
-    console.log('item', product.id);
-
     return (
         <Card className='mx-auto mb-3' style={{ width: '18rem'}}>
             <Card.Img className='px-4 mt-3' style={{maxHeight: '250px'}} src={product.image} />
             <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>
-                    {product.description}.
+                    {product.description}
                 </Card.Text>
                 <Card.Text>
                     ${product.price} COP

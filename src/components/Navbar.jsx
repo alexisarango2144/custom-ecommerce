@@ -20,7 +20,7 @@ const Navbar = ({addedClasses = ''}) => {
             <Nav.Link as={NavLink} to={'/category/suministros'}>Suministros</Nav.Link>
           </Nav>
           {/* Ejemplo pasando el número de items en el carrito como prop: */}
-          <CartWidget addedClasses="me-3" itemsNumber={10}/>
+          <CartWidget addedClasses={"me-3"} itemsNumber={10}/>
         </NavbarBs.Collapse>
       </Container>
     </NavbarBs>

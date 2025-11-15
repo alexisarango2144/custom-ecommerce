@@ -1,11 +1,25 @@
 import React from "react";
-// import ItemCount from './ItemCount'
 import { Badge, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
+// Hook para hacer uso del contexto
+import { useContext } from "react";
+
+// Importamos el contexto
+import { CartContext } from "../context/CartContext";
+
 const ItemDetail = ({ detalle }) => {
+    const {cart, addItem} = useContext(CartContext)
+    console.log(cart)
+
     const categorias = detalle.category;
+
+    const onAdd = (cantidad)=>{
+        console.log('Cantidad agregada: ' + cantidad)
+        addItem(detalle, cantidad)
+    }
+
     return (
         <Card>
             <Row className="g-0">
@@ -32,7 +46,7 @@ const ItemDetail = ({ detalle }) => {
                         <Card.Text>
                             {`${detalle.stock == 1 ? 'Disponible: ' : 'Disponibles: '} ${detalle.stock}`}
                         </Card.Text>
-                        <ItemCount stock={detalle.stock} />
+                        <ItemCount stock={detalle.stock} onAdd={onAdd}/>
                     </Card.Body>
                 </Col>
             </Row>

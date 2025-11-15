@@ -6,19 +6,21 @@ import ItemListContainer from './components/ItemListContainer.jsx'
 import ItemDetailContainer from './components/ItemDetailContainer.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Error from './components/Error.jsx'
+import { CartProvider } from './context/CartContext.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<ItemListContainer title={"Bienvenidos a mi nueva tienda"} />} />
-        <Route path='/item/:id' element={<ItemDetailContainer />} />
-        <Route path='/category/:category' element={<ItemListContainer />} />
-        <Route path='*' element={<Error code="404" />} />
-      </Routes> 
+      <CartProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<ItemListContainer title={"Bienvenidos a mi nueva tienda"} />} />
+          <Route path='/item/:id' element={<ItemDetailContainer />} />
+          <Route path='/category/:category' element={<ItemListContainer />} />
+          <Route path='*' element={<Error code="404" />} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   )
 }
