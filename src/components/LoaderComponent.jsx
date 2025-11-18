@@ -3,7 +3,7 @@ import { Spinner } from 'react-bootstrap'
 
 const LoaderComponent = () => {
   return (
-    <div style={{width:'100%', height:'85vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
+    <div className={'d-flex w-100 justify-content-center align-items-center'} style={{height:'85vh'}}>
         <Spinner animation='grow' variant='primary' size='xl'/>
     </div>
   )

@@ -1,5 +1,5 @@
-import React from "react";
-import { Badge, Card, Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Badge, Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
@@ -8,16 +8,20 @@ import { useContext } from "react";
 
 // Importamos el contexto
 import { CartContext } from "../context/CartContext";
+import { formatCOP } from "../hooks/formatCOP";
 
 const ItemDetail = ({ detalle }) => {
-    const {cart, addItem} = useContext(CartContext)
-    console.log(cart)
+    const {cart, addItem, currentQuantity} = useContext(CartContext)
+    
+    // Haremos el render condicional de los botones de compra únicamente cuando se agregue todo el stock
+    const [quantityAdded, setQuantityAdded] = useState(currentQuantity(detalle))
+    let currentQuantityInCart = currentQuantity(detalle)
 
     const categorias = detalle.category;
 
     const onAdd = (cantidad)=>{
-        console.log('Cantidad agregada: ' + cantidad)
         addItem(detalle, cantidad)
+        setQuantityAdded((currentQuantityInCart + cantidad) > detalle.stock ? detalle.stock : currentQuantityInCart + cantidad)
     }
 
     return (
@@ -33,11 +37,11 @@ const ItemDetail = ({ detalle }) => {
                             {detalle.description}.
                         </Card.Text>
                         <Card.Text>
-                            Precio: ${detalle.price} COP
+                            Precio: {formatCOP(detalle.price)} COP
                         </Card.Text>
                         <Card.Text>
                             
-                            Categorías: {Array.isArray(categorias) ? categorias.map((cat)=> <Badge  key={cat} className="m-2">{cat}</Badge>) : <Badge>{categorias}</Badge>}
+                            Categorías: {Array.isArray(categorias) ? categorias.map((cat)=> <Badge as={Link} to={`/category/${cat}`} key={cat} className="m-2 bg-info text-capitalize">{cat}</Badge>) : <Badge className="bg-info text-capitalize">{categorias}</Badge>}
                             
                         </Card.Text>
                         {/* <Card.Text>
@@ -46,7 +50,11 @@ const ItemDetail = ({ detalle }) => {
                         <Card.Text>
                             {`${detalle.stock == 1 ? 'Disponible: ' : 'Disponibles: '} ${detalle.stock}`}
                         </Card.Text>
-                        <ItemCount stock={detalle.stock} onAdd={onAdd}/>
+                        {quantityAdded !== detalle.stock 
+                            ? <ItemCount item={detalle} onAdd={onAdd} /> 
+                            : <div><Button variant="primary" as={Link} to={'/'} className="me-2">Explorar más productos</Button> <Button variant="success" as={Link} to={'/cart'}>Finalizar compra</Button></div>
+                        }
+                        
                     </Card.Body>
                 </Col>
             </Row>

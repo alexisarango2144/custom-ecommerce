@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { formatCOP } from '../hooks/formatCOP';
 
 const Item = ({ product }) => {
     return (
@@ -12,7 +13,7 @@ const Item = ({ product }) => {
                     {product.description}
                 </Card.Text>
                 <Card.Text>
-                    ${product.price} COP
+                    {formatCOP(product.price)} COP
                 </Card.Text>
                 <Link className="btn btn-dark" to={`/item/${product.id}`}>Ver más</Link>
             </Card.Body>

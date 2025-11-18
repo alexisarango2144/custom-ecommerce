@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
+import { CartContext } from '../context/CartContext'
 
-const ItemCount = ({ stock, onAdd }) => {
+const ItemCount = ({ item, onAdd }) => {
     const [count, setCount] = useState(1)
+    const {cart, addItem, isInCart} = useContext(CartContext)
 
     const sumar = () => {
-        if (count < stock) {
+        if (count < item.stock) {
             setCount(count + 1)
         }
     }
@@ -27,11 +29,11 @@ const ItemCount = ({ stock, onAdd }) => {
                     <InputGroup className='mb-2'>
                         <Button variant='danger' size='sm' onClick={restar} disabled={count === 0}>-</Button>
                         <span className='btn disabled'>{count}</span>
-                        <Button variant='success' size='sm' onClick={sumar} disabled={stock === count}>+</Button>
+                        <Button variant='success' size='sm' onClick={sumar} disabled={item.stock === count}>+</Button>
                     </InputGroup>
                 </div>
                 <div className="col-12 col-md-6 text-end">
-                    <Button variant='primary' onClick={ejecutarCompra} disabled={count === 0 || stock === 0}>Agregar al carrito</Button>
+                    <Button variant='primary' onClick={ejecutarCompra} disabled={count === 0 || item.stock === 0}>Agregar al carrito</Button>
                 </div>
             </div>
 
