@@ -36,7 +36,10 @@ const CartWidget = ({ addedClasses }) => {
                             </div>
                             <div className="col text-end">
                                 <span>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(item.price)} COP</span>
-                                <TiDelete className="ms-2 fs-3 text-danger" onClick={() => removeItem(item)} />
+                                <TiDelete className="ms-2 fs-3 text-danger" onClick={(e) => {
+                                    e.preventDefault();
+                                    removeItem(item);
+                                }} />
                             </div>
                         </div>
                     </Dropdown.Item>))
@@ -55,7 +58,4 @@ const CartWidget = ({ addedClasses }) => {
     )
 }
 
-
-
 export default CartWidget
-
