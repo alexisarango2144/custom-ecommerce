@@ -1,16 +1,46 @@
-# React + Vite
+# Custom E-commerce - Proyecto React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto de e-commerce desarrollado como parte del curso de React en CoderHouse. La aplicación permite a los usuarios navegar por un catálogo de productos, agregarlos a un carrito de compras y finalizar la compra a través de un formulario de checkout.
 
-Currently, two official plugins are available:
+## Descripción del proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La aplicación es una tienda en línea de productos farmacéuticos y de suministros médicos. Los usuarios pueden:
+-   Ver una lista de productos en la página de inicio.
+-   Filtrar productos por categoría.
+-   Ver los detalles de un producto específico.
+-   Agregar productos a un carrito de compras.
+-   Ver y modificar el contenido del carrito.
+-   Completar un formulario de checkout para generar una orden de compra, la cual se almacena en Firebase Firestore.
 
-## React Compiler
+## Herramientas utilizadas
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **React**: Biblioteca principal para la construcción de la interfaz de usuario.
+-   **Vite**: Herramienta de construcción y servidor de desarrollo rápido.
+-   **React Router DOM**: Para la gestión de rutas y navegación en la aplicación.
+-   **React Bootstrap**: Framework de UI para componentes estilizados y responsivos.
+-   **Firebase (Firestore)**: Para la base de datos en tiempo real y el almacenamiento de las órdenes de compra.
+-   **SweetAlert2**: Para mostrar alertas y notificaciones personalizadas.
+-   **React Icons**: Para la inclusión de íconos en la interfaz.
+-   **Sass**: Para el preprocesamiento de estilos CSS.
 
-## Expanding the ESLint configuration
+## Comandos para ejecutar la aplicación
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Sigue estos pasos para ejecutar la aplicación en tu entorno local:
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+    ```
+
+2.  **Navegar al directorio del proyecto e instalar dependencias:**
+    ```bash
+    cd custom-ecommerce
+    npm install
+    ```
+
+3.  **Ejecutar la aplicación en modo de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+Abre [http://localhost:5173](http://localhost:5173) (o el puerto que indique Vite) en tu navegador para ver la aplicación.

@@ -5,9 +5,9 @@ import { formatCOP } from '../hooks/formatCOP';
 
 const Item = ({ product }) => {
     return (
-        <Card className='mx-auto mb-3' style={{ width: '18rem'}}>
+        <Card className='mx-auto mb-3 g-2' style={{ width: '18rem', minHeight: '100%'}}>
             <Card.Img className='px-4 mt-3' style={{maxHeight: '250px'}} src={product.image} />
-            <Card.Body>
+            <Card.Body className='align-content-around'>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>
                     {product.description}

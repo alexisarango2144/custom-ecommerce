@@ -30,7 +30,7 @@ const Error = ({code = '', message = ''}) => {
     <div className="text-center">
         <img src="/looking.jpg" alt="woman looking for something" style={{maxWidth: '400px'}}/>
         <h1>Error {code}</h1>
-        <p>{errorMessage}</p>
+        <p>{message ? message : errorMessage}</p>
         
         <Link className='btn btn-primary' to='/'>Volver al inicio</Link>
     </div>

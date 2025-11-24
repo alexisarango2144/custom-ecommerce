@@ -58,7 +58,11 @@ export const CartProvider = ({ children }) => {
                 })
     }
 
-    const clearCart = () => {
+    const clearCart = (requireConfirm = true) => {
+        if (!requireConfirm) {
+            setCart([])
+            return
+        }
         SwalAlert({
             icon: "question",
             title: `¿Desea limpiar el carrito?`,
@@ -80,6 +84,10 @@ export const CartProvider = ({ children }) => {
         return cart.some((cartProd) => cartProd.id === item.id)
     }
 
+    const total = () => {
+        return cart.reduce((total, item)=> total + (item.price * item.quantity), 0)
+    }
+
     const currentQuantity = (item) => {
         if (!isInCart(item)) {
             return 0
@@ -91,7 +99,7 @@ export const CartProvider = ({ children }) => {
     return (
         // Proveedor de contexto con el estado del carrito. Dentro quedan los objetos hijos del contexto
         // Las funciones se pasan en value para poder ser usadas en los hijos
-        <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, isInCart, currentQuantity }}>
+        <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, isInCart, currentQuantity, total }}>
             {children}
         </CartContext.Provider>
     )

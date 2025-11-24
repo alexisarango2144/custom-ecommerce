@@ -14,7 +14,7 @@ const CartWidget = ({ addedClasses }) => {
 
     return (
 
-        <Dropdown drop="down" autoClose="outside" as={ButtonGroup} className={`${addedClasses}`}>
+        <Dropdown drop="down" autoClose={totalItems ?  "outside" : "inside"} as={ButtonGroup} className={`${addedClasses}`}>
             <Dropdown.Toggle split variant="outline-secondary" />
             <Dropdown.Menu align={{ lg: 'end' }}>
                 {
@@ -35,7 +35,7 @@ const CartWidget = ({ addedClasses }) => {
                                 <span>{item.quantity} Ud.</span>
                             </div>
                             <div className="col text-end">
-                                <span>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(item.price)} COP</span>
+                                <span>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(item.price * item.quantity)} COP</span>
                                 <TiDelete className="ms-2 fs-3 text-danger" onClick={(e) => {
                                     e.preventDefault();
                                     removeItem(item);
@@ -44,11 +44,11 @@ const CartWidget = ({ addedClasses }) => {
                         </div>
                     </Dropdown.Item>))
                     :
-                    <Dropdown.Item as={Link} to={'/'}>Sin productos en el carrito</Dropdown.Item>
+                    <Dropdown.Item as={Link} to={'/'} title="¡Vamos a comprar!">Sin productos en el carrito</Dropdown.Item>
                 }
             </Dropdown.Menu>
             <Button as={Link} to={'/cart'} variant="outline-secondary" className={`position-relative cart-button`}>
-                <Badge bg={totalItems ? 'primary' : 'secondary'} pill text="dark" className="position-absolute h2 top-100 start-100 translate-middle cart-badge mb-2">
+                <Badge bg={totalItems ? 'primary' : 'secondary'} title={totalItems ? `` : `Sin productos en el carrito`} pill text="dark" className="position-absolute h2 top-100 start-100 translate-middle cart-badge mb-2">
                     {totalItems || 0}
                     <span className="visually-hidden">Items en el carrito</span>
                 </Badge>

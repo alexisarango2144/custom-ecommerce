@@ -6,12 +6,10 @@ import { Link } from 'react-router-dom'
 import { formatCOP } from '../hooks/formatCOP'
 
 export const CartView = () => {
-    const { cart, removeItem, clearCart } = useContext(CartContext)
-
-    const totalPagar = cart.reduce((total, item) => total + item.price * item.quantity, 0)
+    const { cart, removeItem, clearCart, total } = useContext(CartContext)
 
     return (
-        <Container className='text-center'>
+        <Container className='text-center mb-4'>
             <h1>Tu carrito</h1>
 
             <div className='container'>
@@ -26,7 +24,9 @@ export const CartView = () => {
                                 </div>
                                 <div className="col-12 col-lg-9 text-start">
                                     <div className="row mb-1">
-                                        <span className='text-center d-block fs-5'>{item.title}</span>
+                                        <Link to={`/item/${item.id}`} className='text-decoration-none text-dark text-start d-block fs-5'>
+                                            {item.title}
+                                        </Link>
                                     </div>
                                     <div className="row">
                                         <div className="col">
@@ -49,11 +49,11 @@ export const CartView = () => {
                     ))
                 }
                 <div className="m-2 p-2 text-end">
-                    <span style={{fontSize: '1.25rem'}}><b>Total a pagar:</b> {formatCOP(totalPagar)} COP</span>
+                    <span style={{fontSize: '1.25rem'}}><b>Total a pagar:</b> {formatCOP(total())} COP</span>
                 </div>
                 <div className="text-end">
                     <Button variant='danger' className='me-3' onClick={()=> clearCart()}>Vaciar carrito</Button>
-                    <Button variant='success' >Finalizar compra</Button>
+                    <Button as={Link} to={'/checkout'} variant='success' >Finalizar compra</Button>
                 </div>
 
             </div>

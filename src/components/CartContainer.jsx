@@ -7,7 +7,7 @@ const CartContainer = () => {
     const {cart} = useContext(CartContext)
     
   return (
-    <div className='container text-center'>
+    <div className='container'>
         {
         !cart.length
         ? <EmptyCart/>
