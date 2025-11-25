@@ -59,7 +59,7 @@ const ItemDetailContainer = () => {
                     errorObj.code
                     ? <Error code={errorObj.code} message={errorObj.message} />
                     :
-                    <Container>
+                    <Container className="my-4 pt-4">
                         <ItemDetail detalle={detalle} />
                     </Container>
             }

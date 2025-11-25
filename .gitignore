@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 #secrets
+.env
+.env.local
+.env.*.local

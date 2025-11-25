@@ -44,9 +44,9 @@ const ItemListContainer = ({ addedClasses, title }) => {
         loader
           ? <LoaderComponent />
           :
-          <Container className={`${addedClasses} text-center mb-4`}>
+          <Container className={`${addedClasses ? addedClasses : ''} text-center mb-4`}>
             {title ? <h1>{title}</h1> : <h1>Bienvenido</h1>}
-            {!category ? <h2>Estás viendo todos los productos</h2> : <h2>Estás viendo productos de la categoría {category}.</h2>}
+            {!category ? <h2 className="mb-4">Estás viendo todos los productos</h2> : <h2 className="mb-2">Estás viendo productos de la categoría {category}.</h2>}
             <ItemList data={data} />
           </Container>
       }

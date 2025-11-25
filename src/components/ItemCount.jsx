@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { CartContext } from '../context/CartContext'
 
-const ItemCount = ({ item, onAdd }) => {
+const ItemCount = ({ item, onAdd, children }) => {
     const [count, setCount] = useState(1)
     const {cart, addItem, isInCart} = useContext(CartContext)
 
@@ -25,6 +25,7 @@ const ItemCount = ({ item, onAdd }) => {
     return (
         <>
             <div className='row justify-content-start'>
+                {children}
                 <div className="col-12 col-md-6">
                     <InputGroup className='mb-2'>
                         <Button variant='danger' size='sm' onClick={restar} disabled={count === 0}>-</Button>

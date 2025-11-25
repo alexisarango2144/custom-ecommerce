@@ -92,6 +92,8 @@ const Checkout = () => {
             })
     }
 
+    if (loader) return <LoaderComponent />;
+
     return (
         <Container className="text-center my-4">
             {
@@ -161,7 +163,7 @@ const Checkout = () => {
                                                 Nunca compartiremos tu correo con nadie más.
                                             </Form.Text>
                                             <Form.Control.Feedback type="invalid">
-                                                El email es requerido.
+                                                Ingrese un correo electrónico válido.
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
@@ -171,7 +173,7 @@ const Checkout = () => {
                                             <Form.Control type="email" placeholder="Confirme su correo" name="emailConfirm" value={buyer.emailConfirm} required isInvalid={validated && !emailIsConfirmed} onChange={handleInputChange} />
                                             {validated && buyer.emailConfirm &&
                                                 <Form.Text className={emailIsConfirmed ? "text-success" : "text-danger"}>
-                                                    {emailIsConfirmed ? "Los correos coinciden" : "Los correos no coinciden"}
+                                                    {emailIsConfirmed ? "Los campos coinciden" : "Los campos no coinciden"}
                                                 </Form.Text>}
                                         </Form.Group>
                                     </Col>

@@ -24,6 +24,8 @@ const ItemDetail = ({ detalle }) => {
         setQuantityAdded((currentQuantityInCart + cantidad) > detalle.stock ? detalle.stock : currentQuantityInCart + cantidad)
     }
 
+    const stockAvailable = detalle.stock - currentQuantityInCart;
+
     return (
         <Card>
             <Row className="g-0">
@@ -48,11 +50,38 @@ const ItemDetail = ({ detalle }) => {
                             {`Calificación: ${detalle.rating.rate ? detalle.rating.rate : '-'}/5 (${detalle.rating.count ? detalle.rating.count : 0} Calificaciones )`}
                         </Card.Text> */}
                         <Card.Text>
-                            {`${detalle.stock == 1 ? 'Disponible: ' : 'Disponibles: '} ${detalle.stock}`}
+                            {`${stockAvailable == 1 ? 'Disponible: ' : 'Disponibles: '} ${stockAvailable}`}
                         </Card.Text>
-                        {quantityAdded !== detalle.stock 
-                            ? <ItemCount item={detalle} onAdd={onAdd} /> 
-                            : <div><Button variant="primary" as={Link} to={'/'} className="me-2">Explorar más productos</Button> <Button variant="success" as={Link} to={'/cart'}>Finalizar compra</Button></div>
+                        {
+                        detalle.stock > 0 ?
+                            currentQuantityInCart !== detalle.stock 
+                                ? 
+                                    <ItemCount item={detalle} onAdd={onAdd}>
+                                        {currentQuantityInCart > 0 &&
+                                            <Card.Text className="text-success">
+                                                ¡Has agregado {quantityAdded}  a tu carrito!
+                                            </Card.Text>
+                                        }
+                                    </ItemCount>
+                                    
+                                : <div>
+                                    <Card.Text className="text-success">
+                                        ¡Has agregado el máximo disponible de este producto a tu carrito!
+                                    </Card.Text>
+                                    <Button variant="primary" as={Link} to={'/'} className="me-2">
+                                        Explorar más productos
+                                    </Button> 
+                                    <Button variant="success" as={Link} to={'/cart'}>
+                                        Finalizar compra
+                                    </Button>
+                                </div>
+                            :<div><Card.Text className="text-danger">
+                                    ¡Lo sentimos, no hay stock disponible para este producto!
+                                </Card.Text>
+                                <Button variant="primary" as={Link} to={'/'} className="me-2">
+                                    Explorar más productos
+                                </Button> 
+                            </div>
                         }
                         
                     </Card.Body>

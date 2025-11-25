@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import SwalToast from "../components/SwalToast";
 import SwalAlert from "../components/SwalAlert";
 
@@ -7,13 +7,36 @@ import SwalAlert from "../components/SwalAlert";
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-
+    
     // Creamos el estado del carrito
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(() => {
+        return JSON.parse(localStorage.getItem('lsCart')) || []
+    })
 
-    // Aquí van todas las funciones/funcionalidades que modifiquen el carrito
+    // Almacenar en el localStorage cada vez que cambie el carrito
+    useEffect(()=>{
+        localStorage.setItem('lsCart', JSON.stringify(cart))
+    },[cart])
 
-    // Agregar item al carrito
+    // Sincronizar el carrito entre pestañas para evitar inconsistencias
+    useEffect(() => {
+        const handleStorageChange = (e) => {
+            if (e.key === 'lsCart') {
+                const newCart = JSON.parse(e.newValue) || [];
+                setCart(newCart);
+            }
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        // Limpiamos el event listener cuando el componente se desmonta
+        // para evitar fugas de memoria.
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []); // Dejamos el array vacío para asegurar que este efecto se ejecute solo una vez al montar el componente.
+
+
     const addItem = (item, qty) => {
         if (isInCart(item)) {
             // Si ya existe, no lo agrego de nuevo, solo sumo la cantidad
